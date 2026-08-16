@@ -1,0 +1,12 @@
+{
+  "name": "Guildcraft — Discord server architect",
+  "short_name": "Guildcraft",
+  "description": "Design a thoughtful Discord server blueprint for channels, roles, permissions, onboarding, and safety.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f6f7fb",
+  "theme_color": "#151827",
+  "icons": [
+    { "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

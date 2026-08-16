@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A guided workspace for designing a thoughtful, secure Discord server.">
+  <meta name="theme-color" content="#151827">
+  <meta property="og:title" content="Guildcraft — design a Discord server that works">
+  <meta property="og:description" content="A free, privacy-friendly blueprint builder for channels, roles, permissions, onboarding, and safety.">
+  <meta property="og:type" content="website">
+  <title>Guildcraft — Discord server architect</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Project navigation">
+      <a class="brand" href="#" aria-label="Guildcraft home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="m7 8 5-3 5 3v7l-5 4-5-4V8Z"/><path d="m9.5 10.5 2.5 1.4 2.5-1.4M12 12v3.5"/></svg>
+        </span>
+        <span>Guildcraft</span>
+      </a>
+
+      <div class="project-switcher">
+        <span class="eyebrow">CURRENT BLUEPRINT</span>
+        <button class="project-button" type="button" id="projectMenuButton" aria-haspopup="true">
+          <span class="project-avatar" id="projectAvatar">H</span>
+          <span><strong id="projectNameSide">Friday Night Five</strong><small>Discord server</small></span>
+          <svg class="chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 10 4 4 4-4"/></svg>
+        </button>
+      </div>
+
+      <nav class="steps" id="stepNav" aria-label="Blueprint steps">
+        <button class="step active" data-step="0" type="button">
+          <span class="step-icon"><svg viewBox="0 0 24 24"><path d="M4 20h16M6 20V9l6-5 6 5v11M9 20v-6h6v6"/></svg></span>
+          <span><strong>Foundation</strong><small>Purpose & audience</small></span>
+          <span class="step-check" aria-hidden="true">✓</span>
+        </button>
+        <button class="step" data-step="1" type="button">
+          <span class="step-icon"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h10M4 17h13"/></svg></span>
+          <span><strong>Structure</strong><small>Categories & channels</small></span>
+          <span class="step-check" aria-hidden="true">✓</span>
+        </button>
+        <button class="step" data-step="2" type="button">
+          <span class="step-icon"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+          <span><strong>Roles & access</strong><small>Permissions & trust</small></span>
+          <span class="step-check" aria-hidden="true">✓</span>
+        </button>
+        <button class="step" data-step="3" type="button">
+          <span class="step-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg></span>
+          <span><strong>Safety & onboarding</strong><small>Guardrails & welcome</small></span>
+          <span class="step-check" aria-hidden="true">✓</span>
+        </button>
+        <button class="step" data-step="4" type="button">
+          <span class="step-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M9 13l2 2 4-4M9 18h6"/></svg></span>
+          <span><strong>Review & handoff</strong><small>Validate & export</small></span>
+          <span class="step-check" aria-hidden="true">✓</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="autosave-status"><span class="status-dot"></span><span><strong>Saved locally</strong><small id="savedTime">Just now</small></span></div>
+        <button class="text-button" id="startOverButton" type="button">Start over</button>
+      </div>
+    </aside>
+
+    <div class="main-area">
+      <header class="topbar">
+        <button class="icon-button mobile-menu" id="mobileMenuButton" type="button" aria-label="Open navigation">
+          <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+        <div class="topbar-title">
+          <span class="breadcrumb">Blueprints <span>/</span> <strong id="breadcrumbName">Friday Night Five</strong></span>
+        </div>
+        <div class="topbar-actions">
+          <span class="save-indicator" id="saveIndicator"><span class="status-dot"></span> Saved</span>
+          <button class="button secondary compact" id="previewToggle" type="button">
+            <svg viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>
+            Preview
+          </button>
+          <button class="avatar-button" type="button" aria-label="Account menu">AD</button>
+        </div>
+      </header>
+
+      <div class="workspace">
+        <main class="content" id="mainContent">
+          <div class="progress-mobile" aria-label="Blueprint progress"><span id="mobileStepLabel">Step 1 of 5</span><div><i id="mobileProgress"></i></div></div>
+
+          <section class="page active" data-page="0" aria-labelledby="foundationTitle">
+            <div class="page-heading">
+              <div><span class="section-kicker">01 · FOUNDATION</span><h1 id="foundationTitle">Start with the why.</h1><p>A good server is easier to navigate when every space serves the same purpose.</p></div>
+              <span class="time-estimate"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> 2 min</span>
+            </div>
+
+            <form class="form-stack" id="foundationForm">
+              <fieldset class="field-group">
+                <legend>Start from a playbook</legend>
+                <p class="field-help">Pick the closest starting point. Applying one updates the example structure, roles, and agreements.</p>
+                <div class="playbook-grid" id="playbookChoices">
+                  <button class="playbook-card selected" data-playbook="competitive" type="button"><span class="playbook-icon competitive"><svg viewBox="0 0 24 24"><path d="M8 21h8M12 17v4M7 4h10v4a5 5 0 0 1-10 0V4ZM7 6H4v2a4 4 0 0 0 4 4M17 6h3v2a4 4 0 0 1-4 4"/></svg></span><span><strong>Competitive team</strong><small>Roster, practice, match day & review</small></span><em>BEST FIT</em></button>
+                  <button class="playbook-card" data-playbook="project" type="button"><span class="playbook-icon project"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12h18"/></svg></span><span><strong>Project team</strong><small>Decisions, delivery & team rituals</small></span></button>
+                  <button class="playbook-card" data-playbook="community" type="button"><span class="playbook-icon community"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M8.5 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM20 8v6M23 11h-6"/></svg></span><span><strong>Community</strong><small>Welcome, conversation & events</small></span></button>
+                  <button class="playbook-card" data-playbook="creator" type="button"><span class="playbook-icon creator"><svg viewBox="0 0 24 24"><path d="m12 3 2.2 4.5 5 .7-3.6 3.5.9 5-4.5-2.3-4.5 2.3.9-5-3.6-3.5 5-.7L12 3Z"/></svg></span><span><strong>Creator hub</strong><small>Audience, launches & feedback</small></span></button>
+                </div>
+                <div class="league-context" id="leagueContext"><span class="league-badge">LEAGUE-READY</span><p>Designed for a 5–7 player roster: weekly match coordination, availability, scrims, strategy, VOD review, and a private captain handoff for tournament codes. Inspired by <a href="https://beer-league.games/" target="_blank" rel="noreferrer">Beer League Esports</a>; not affiliated.</p></div>
+              </fieldset>
+
+              <div class="field-group">
+                <label for="serverName">What should the server be called?</label>
+                <p class="field-help">Keep it short enough to recognize at a glance.</p>
+                <div class="input-with-count"><input id="serverName" type="text" maxlength="40" value="Friday Night Five" autocomplete="off"><span id="nameCount">17 / 40</span></div>
+              </div>
+
+              <div class="field-group">
+                <label for="serverPurpose">What brings people here?</label>
+                <p class="field-help">One sentence is enough. We’ll use it to shape your spaces.</p>
+                <textarea id="serverPurpose" maxlength="180" rows="3" placeholder="A place for…">A focused home for our tournament roster to plan practices, prepare for weekly matches, review games, and stay competitive without losing the fun.</textarea>
+                <div class="field-meta"><button class="inline-action" id="tightenPurpose" type="button"><svg viewBox="0 0 24 24"><path d="m12 3 1.1 3.4L16.5 7.5l-3.4 1.1L12 12l-1.1-3.4-3.4-1.1 3.4-1.1L12 3ZM18 13l.8 2.2L21 16l-2.2.8L18 19l-.8-2.2L15 16l2.2-.8L18 13Z"/></svg> Refine wording</button><span id="purposeCount">140 / 180</span></div>
+              </div>
+
+              <fieldset class="field-group">
+                <legend>Who is this for?</legend>
+                <p class="field-help">Choose the closest fit. You can still customize everything later.</p>
+                <div class="choice-grid" id="audienceChoices">
+                  <label class="choice-card"><input type="radio" name="audience" value="community"><span class="choice-icon violet"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M8.5 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM20 8v6M23 11h-6"/></svg></span><strong>Community</strong><small>Members gather around a shared interest.</small></label>
+                  <label class="choice-card selected"><input type="radio" name="audience" value="team" checked><span class="choice-icon blue"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12h18"/></svg></span><strong>Team</strong><small>A focused workspace for collaborators.</small></label>
+                  <label class="choice-card"><input type="radio" name="audience" value="creator"><span class="choice-icon coral"><svg viewBox="0 0 24 24"><path d="m12 3 2.2 4.5 5 .7-3.6 3.5.9 5-4.5-2.3-4.5 2.3.9-5-3.6-3.5 5-.7L12 3Z"/></svg></span><strong>Creator</strong><small>A home base for an audience or brand.</small></label>
+                </div>
+              </fieldset>
+
+              <div class="two-column">
+                <div class="field-group">
+                  <label for="memberScale">Expected size</label>
+                  <select id="memberScale"><option value="small" selected>Under 100 members</option><option value="medium">100–1,000 members</option><option value="large">1,000+ members</option></select>
+                </div>
+                <div class="field-group">
+                  <label for="accessModel">How do people join?</label>
+                  <select id="accessModel"><option value="open">Open invite</option><option value="approval">Invite + verification</option><option value="private" selected>Private / invite only</option></select>
+                </div>
+              </div>
+
+              <fieldset class="field-group">
+                <legend>What will people do most?</legend>
+                <p class="field-help">Pick up to four. This shapes your starter channels.</p>
+                <div class="activity-grid" id="activityChoices"></div>
+                <p class="validation-message" id="activityMessage" role="status"></p>
+              </fieldset>
+            </form>
+          </section>
+
+          <section class="page" data-page="1" aria-labelledby="structureTitle">
+            <div class="page-heading">
+              <div><span class="section-kicker">02 · STRUCTURE</span><h1 id="structureTitle">Give every conversation a home.</h1><p>Start intentionally small. More channels can be added when behavior proves they’re needed.</p></div>
+              <button class="button secondary compact" id="regenerateStructure" type="button"><svg viewBox="0 0 24 24"><path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/></svg> Regenerate</button>
+            </div>
+            <div class="info-banner"><svg viewBox="0 0 24 24"><path d="m12 3 1.1 3.4L16.5 7.5l-3.4 1.1L12 12l-1.1-3.4-3.4-1.1 3.4-1.1L12 3Z"/></svg><span><strong>Thoughtful default</strong> — Your plan starts with fewer than 12 public channels to reduce choice paralysis.</span></div>
+            <div class="structure-toolbar"><div><strong id="structureCount">4 categories · 10 channels</strong><small>Drag handles show the intended order.</small></div><button class="button primary compact" id="addCategoryButton" type="button">+ Add category</button></div>
+            <div class="category-list" id="categoryEditor"></div>
+          </section>
+
+          <section class="page" data-page="2" aria-labelledby="rolesTitle">
+            <div class="page-heading">
+              <div><span class="section-kicker">03 · ROLES & ACCESS</span><h1 id="rolesTitle">Grant trust in layers.</h1><p>Roles should explain responsibility, not become a collection of decorative labels.</p></div>
+              <span class="time-estimate"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> 3 min</span>
+            </div>
+            <div class="role-list" id="roleEditor"></div>
+            <button class="add-row" id="addRoleButton" type="button"><span>+</span> Add a custom role</button>
+
+            <div class="permission-section">
+              <div class="section-heading-small"><div><h2>Builder permissions</h2><p>Minimum Discord permissions needed to apply this blueprint.</p></div><span class="badge safe">Least privilege</span></div>
+              <div class="permission-card">
+                <div class="permission-summary"><span class="bot-avatar"><svg viewBox="0 0 24 24"><path d="M8 7V5M16 7V5M5 10h14v9H5zM9 14h.01M15 14h.01M8 22v-3M16 22v-3"/></svg></span><span><strong>Guildcraft Builder</strong><small>OAuth scopes: <code>bot</code>, <code>applications.commands</code></small></span><span class="permission-number" id="permissionNumber">268561424</span></div>
+                <div class="permission-grid" id="botPermissions">
+                  <label><input type="checkbox" value="manage_channels" data-bit="16" checked><span><strong>Manage Channels</strong><small>Create and organize spaces</small></span></label>
+                  <label><input type="checkbox" value="manage_roles" data-bit="268435456" checked><span><strong>Manage Roles</strong><small>Create roles below the bot</small></span></label>
+                  <label><input type="checkbox" value="view_audit_log" data-bit="128" checked><span><strong>View Audit Log</strong><small>Verify applied changes</small></span></label>
+                  <label><input type="checkbox" value="manage_guild" data-bit="32"><span><strong>Manage Server</strong><small>Needed only for server settings</small></span></label>
+                  <label><input type="checkbox" value="manage_messages" data-bit="8192"><span><strong>Manage Messages</strong><small>Needed only for moderation tools</small></span></label>
+                  <label class="blocked-permission"><input type="checkbox" disabled><span><strong>Administrator</strong><small>Never requested</small></span><em>Blocked</em></label>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="page" data-page="3" aria-labelledby="safetyTitle">
+            <div class="page-heading">
+              <div><span class="section-kicker">04 · SAFETY & ONBOARDING</span><h1 id="safetyTitle">Make the right behavior obvious.</h1><p>Pair a warm arrival with clear expectations and quiet, reliable moderation.</p></div>
+              <span class="time-estimate"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> 4 min</span>
+            </div>
+            <div class="setup-sections">
+              <section class="setup-card">
+                <div class="setup-card-head"><span class="setup-icon lavender"><svg viewBox="0 0 24 24"><path d="M3 12h18M12 3v18M5.6 5.6l12.8 12.8M18.4 5.6 5.6 18.4"/></svg></span><div><h2>Arrival experience</h2><p>Help newcomers understand the server before they post.</p></div></div>
+                <div class="toggle-list">
+                  <label><span><strong>Welcome screen</strong><small>Purpose, three starter channels, and a friendly next step.</small></span><input class="switch" id="welcomeScreen" type="checkbox" checked></label>
+                  <label><span><strong>Rules acknowledgement</strong><small>Members must accept the rules before chatting.</small></span><input class="switch" id="rulesGate" type="checkbox" checked></label>
+                  <label><span><strong>Interest-based onboarding</strong><small>Let members choose channels that fit their interests.</small></span><input class="switch" id="interestOnboarding" type="checkbox" checked></label>
+                </div>
+              </section>
+
+              <section class="setup-card">
+                <div class="setup-card-head"><span class="setup-icon mint"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg></span><div><h2>Safety baseline</h2><p>Quiet protection that scales with the community.</p></div></div>
+                <div class="select-list">
+                  <label><span><strong>Verification level</strong><small>Who can participate immediately</small></span><select id="verificationLevel"><option value="low">Verified email</option><option value="medium" selected>Verified email + 5 min wait</option><option value="high">Verified email + 10 min member</option><option value="highest">Verified phone</option></select></label>
+                  <label><span><strong>Explicit media filter</strong><small>Scan image uploads from members</small></span><select id="mediaFilter"><option value="none">Disabled</option><option value="without_role">Members without roles</option><option value="all" selected>All members</option></select></label>
+                </div>
+                <div class="toggle-list bordered">
+                  <label><span><strong>AutoMod spam protection</strong><small>Block mention spam and suspicious messages.</small></span><input class="switch" id="automod" type="checkbox" checked></label>
+                  <label><span><strong>Private moderator log</strong><small>Record moderation actions for accountability.</small></span><input class="switch" id="modLog" type="checkbox" checked></label>
+                </div>
+              </section>
+
+              <section class="setup-card">
+                <div class="setup-card-head"><span class="setup-icon amber"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg></span><div><h2>Community agreements</h2><p>Plain-language rules people can actually remember.</p></div></div>
+                <div class="rules-editor" id="rulesEditor"></div>
+                <button class="inline-action" id="addRuleButton" type="button">+ Add agreement</button>
+              </section>
+            </div>
+          </section>
+
+          <section class="page" data-page="4" aria-labelledby="reviewTitle">
+            <div class="page-heading review-heading">
+              <div><span class="section-kicker">05 · REVIEW & HANDOFF</span><h1 id="reviewTitle">Your blueprint is ready.</h1><p>Review the plan, resolve anything risky, and hand it to your Discord administrator.</p></div>
+            </div>
+            <div class="review-hero">
+              <div class="score-ring" id="scoreRing" style="--score: 92"><span><strong id="scoreValue">92</strong><small>/ 100</small></span></div>
+              <div><span class="badge safe" id="scoreBadge">Launch ready</span><h2 id="reviewServerName">Haven House</h2><p id="reviewPurpose">A cozy community for indie game developers to share progress, swap feedback, and ship better work together.</p></div>
+            </div>
+            <div class="review-grid">
+              <section class="review-panel"><div class="review-panel-head"><h2>Blueprint summary</h2><span id="summaryHealth">6 checks passed</span></div><div class="summary-list" id="summaryList"></div></section>
+              <section class="review-panel"><div class="review-panel-head"><h2>Readiness checks</h2><span class="badge safe">Healthy</span></div><div class="check-list" id="checkList"></div></section>
+            </div>
+            <section class="handoff-panel">
+              <div><span class="handoff-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg></span><span><h2>Deployment package</h2><p>Includes the channel tree, role order, overwrites, safety settings, and exact bot permissions.</p></span></div>
+              <div class="handoff-actions"><button class="button secondary" id="copyManifest" type="button">Copy JSON</button><button class="button primary" id="downloadManifest" type="button"><svg viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg> Download blueprint</button></div>
+            </section>
+            <div class="implementation-note"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg><p><strong>Safe by design:</strong> This browser tool creates a complete plan, but never asks for a Discord bot token. A trusted deployment service should read the exported blueprint and use a server-side token. Keep the builder bot’s role above only the roles it manages, then remove it after deployment if ongoing sync isn’t needed.</p></div>
+          </section>
+
+          <footer class="form-footer">
+            <button class="button secondary" id="backButton" type="button" disabled><svg viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg> Back</button>
+            <span id="stepCounter">Step 1 of 5</span>
+            <button class="button primary" id="nextButton" type="button">Shape the structure <svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button>
+          </footer>
+        </main>
+
+        <aside class="preview-panel" id="previewPanel" aria-label="Live Discord preview">
+          <div class="preview-header"><div><span class="live-dot"></span> LIVE PREVIEW</div><button class="icon-button" id="closePreview" type="button" aria-label="Close preview"><svg viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
+          <div class="discord-window">
+            <div class="discord-top"><div class="server-mark" id="previewAvatar">H</div><div><strong id="previewNameTop">Haven House</strong><span><i></i> Blueprint preview</span></div><button type="button" aria-label="Server menu"><svg viewBox="0 0 24 24"><path d="m8 10 4 4 4-4"/></svg></button></div>
+            <div class="discord-body">
+              <div class="server-rail"><span class="rail-home"><svg viewBox="0 0 24 24"><path d="M8 18 3 21V6l9-4 9 4v15l-5-3M8 9h8v9H8z"/></svg></span><span class="rail-server active" id="railAvatar">H</span><i></i><span class="rail-add">+</span></div>
+              <div class="channel-panel">
+                <div class="channel-scroll" id="channelPreview"></div>
+                <div class="user-panel"><span>AD</span><div><strong>architect</strong><small>Planning</small></div><div class="user-icons">◌ ⚙</div></div>
+              </div>
+              <div class="chat-preview">
+                <div class="chat-title"><span>#</span><strong id="activeChannelName">welcome</strong><i></i><small id="activeChannelTopic">Start here and meet the community.</small><div>⌕</div></div>
+                <div class="welcome-message"><span class="channel-big">#</span><h3 id="welcomeChannelTitle">Welcome to #welcome!</h3><p id="welcomeDescription">This is the start of the Haven House server.</p></div>
+                <div class="sample-message"><span class="sample-avatar">G</span><div><strong>Guildcraft <em>APP</em></strong><small>Today at 9:41 AM</small><p id="sampleMessage">Welcome to Haven House. Please read the community agreements, then introduce yourself!</p></div></div>
+                <div class="message-box">Message #<span id="messageChannel">welcome</span><span>☺</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="preview-foot"><span><kbd>#</kbd> Text</span><span><kbd>◖</kbd> Voice</span><span>Updates as you build</span></div>
+        </aside>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="modal-backdrop" id="confirmModal" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="confirmTitle">
+      <span class="modal-icon">↺</span><h2 id="confirmTitle">Start this blueprint over?</h2><p>This clears the saved local draft and restores the thoughtful starter plan.</p>
+      <div class="modal-actions"><button class="button secondary" id="cancelReset" type="button">Keep my work</button><button class="button danger" id="confirmReset" type="button">Start over</button></div>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
